@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Orders & Live Tracking | King of Spices</title>
+<link rel="shortcut icon" href="./favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="./assets/css/style.css">
+<script src="./assets/js/script.js" defer></script>
+<script src="./assets/js/dashboard.js" defer></script>
+<script src="https://kit.fontawesome.com/5289663089.js" crossorigin="anonymous"></script>
+</head>
+<body data-page="dashboard-user">
+
+<!-- Header Section -->
+<header class="header-main">
+<nav class="nav-main">
+<h1 class="main-title"><a href="index.html"><i class="fa-solid fa-pepper-hot" style="color:var(--brand);"></i> King of Spices</a></h1>
+<div class="openMenu"><i class="fa-solid fa-bars" style="color: #ff9d2e;"></i></div>
+<ul class="nav-ul">
+<li><a href="index.html">Home</a></li>
+<li><a href="index.html#menu">Menu</a></li>
+<li><a href="my-orders.html" class="active"><i class="fa-solid fa-clock-rotate-left"></i> My Orders</a></li>
+<li><a href="partner-portal.html"><i class="fa-solid fa-store"></i> Partner Hub</a></li>
+<li><a href="kings-club.html">King's Club</a></li>
+<li><a href="catering.html">Catering</a></li>
+<li><a href="reservation.html">Reservation</a></li>
+<li><span class="member-pill"><i class="fa-solid fa-crown"></i> Member</span></li>
+<li><button class="nav-cart-btn js-open-cart"><i class="fa-solid fa-basket-shopping"></i> Cart <span class="cart-count">0</span></button></li>
+<li><div class="closeMenu"><i class="fa-solid fa-xmark"></i></div></li>
+</ul>
+</nav>
+</header>
+
+<!-- Main Page Container -->
+<main class="dashboard-page-container">
+  
+  <!-- Customer Mode Banner -->
+  <div class="merchant-mode-alert cust">
+    <div class="mode-left">
+      <span class="mode-tag cust"><i class="fa-solid fa-user"></i> CUSTOMER MODE</span>
+      <span>Live Food Order Tracking & Past Receipts</span>
+    </div>
+    <div class="mode-right">
+      <a href="partner-portal.html" class="mode-switch-btn rest"><i class="fa-solid fa-store"></i> Switch to Partner / Kitchen Mode</a>
+    </div>
+  </div>
+
+  <!-- Banner -->
+  <div class="dash-header-banner">
+    <div>
+      <h1><i class="fa-solid fa-utensils"></i> My Orders & Live Tracking</h1>
+      <p>Track your active food delivery status, view detailed order receipts, and easily reorder your favorite meals.</p>
+    </div>
+    <div class="dash-actions-nav">
+      <a href="index.html#menu" class="dash-nav-link"><i class="fa-solid fa-plus"></i> Order Food Now</a>
+      <button type="button" class="dash-nav-link js-open-auth"><i class="fa-solid fa-user-circle"></i> Account Profile</button>
+    </div>
+  </div>
+
+  <!-- User Profile Summary Widget -->
+  <section id="user-profile-widget"></section>
+
+  <!-- Filter Bar -->
+  <div class="dashboard-filter-bar">
+    <span style="font-weight:700;font-size:0.9rem;margin-right:6px;"><i class="fa-solid fa-filter"></i> Filter Orders:</span>
+    <button class="filter-tab-btn order-filter-btn active" data-filter="all">All Orders</button>
+    <button class="filter-tab-btn order-filter-btn" data-filter="active">🔥 Active & Live Tracking</button>
+    <button class="filter-tab-btn order-filter-btn" data-filter="completed">✅ Delivered</button>
+    <button class="filter-tab-btn order-filter-btn" data-filter="cancelled">❌ Cancelled</button>
+  </div>
+
+  <!-- Orders Container -->
+  <section id="user-orders-container"></section>
+
+</main>
+
+<!-- Footer -->
+<footer>
+<div class="footer-row">
+<div class="footer-col">
+<h4 class="footer-title">company</h4>
+<ul>
+<li><a href="about.html">about us</a></li>
+<li><a href="#">privacy policy</a></li>
+</ul>
+</div>
+<div class="footer-col">
+<h4 class="footer-title">food delivery</h4>
+<ul>
+<li><a href="my-orders.html">My Orders & Tracking</a></li>
+<li><a href="partner-portal.html">Partner & Kitchen Hub</a></li>
+</ul>
+</div>
+<div class="footer-col">
+<h4 class="footer-title">revenue programs</h4>
+<ul>
+<li><a href="kings-club.html">King's Club membership</a></li>
+<li><a href="catering.html">Catering & events</a></li>
+</ul>
+</div>
+<div class="footer-col">
+<h4 class="footer-title">follow us</h4>
+<div class="social-links">
+<a href="#" title="FaceBook"><i class="fab fa-facebook-f"></i></a>
+<a href="#" title="Twitter"><i class="fab fa-twitter"></i></a>
+<a href="#" title="Instagram"><i class="fab fa-instagram"></i></a>
+</div>
+</div>
+</div>
+<div class="footer-copyright">
+<h3>Copyright ©️ 2026 | <a href="index.html">King of Spices</a> | All rights reserved.</h3>
+</div>
+</footer>
+
+<!-- Cart Drawer -->
+<div class="overlay"></div>
+<div class="cart-drawer">
+<div class="cart-head"><h3>Your Cart</h3><button class="cart-close">&times;</button></div>
+<div class="cart-body"></div>
+<div class="cart-foot">
+<div class="delivery-choice">
+<label><input type="radio" name="delivery" value="standard" checked> Standard<br><small>₹40 · 35–45 min</small></label>
+<label><input type="radio" name="delivery" value="express"> Express<br><small>₹80 · 15–20 min</small></label>
+</div>
+<div class="coupon-row">
+<input type="text" class="coupon-input" placeholder="Coupon (WELCOME10 / KING50)">
+<button type="button" class="btn-ghost coupon-apply">Apply</button>
+</div>
+<div class="coupon-msg"></div>
+<div class="cart-summary">
+<div class="row-line"><span>Subtotal</span><span class="row-subtotal">₹0</span></div>
+<div class="row-line discount" style="display:none;"><span>Discount</span><span>−₹0</span></div>
+<div class="row-line"><span>Tax (5%)</span><span class="row-tax">₹0</span></div>
+<div class="row-line"><span>Delivery</span><span class="row-delivery">₹0</span></div>
+<div class="row-line total"><span>Total</span><span class="row-total">₹0</span></div>
+</div>
+<button type="button" class="btn-primary btn-block place-order" style="margin-top:14px;">Place Order</button>
+</div>
+</div>
+
+</body>
+</html>

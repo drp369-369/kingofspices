@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Partner & Kitchen Hub | King of Spices</title>
+<link rel="shortcut icon" href="./favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="./assets/css/style.css">
+<script src="./assets/js/script.js" defer></script>
+<script src="./assets/js/dashboard.js" defer></script>
+<script src="https://kit.fontawesome.com/5289663089.js" crossorigin="anonymous"></script>
+</head>
+<body data-page="partner-portal">
+
+<!-- Header Section -->
+<header class="header-main">
+<nav class="nav-main">
+<h1 class="main-title"><a href="index.html"><i class="fa-solid fa-pepper-hot" style="color:var(--brand);"></i> King of Spices</a></h1>
+<div class="openMenu"><i class="fa-solid fa-bars" style="color: #ff9d2e;"></i></div>
+<ul class="nav-ul">
+<li><a href="index.html">Home</a></li>
+<li><a href="index.html#menu">Menu</a></li>
+<li><a href="my-orders.html"><i class="fa-solid fa-clock-rotate-left"></i> My Orders</a></li>
+<li><a href="partner-portal.html" class="active"><i class="fa-solid fa-store"></i> Partner Hub</a></li>
+<li><a href="kings-club.html">King's Club</a></li>
+<li><a href="catering.html">Catering</a></li>
+<li><a href="reservation.html">Reservation</a></li>
+<li><span class="member-pill"><i class="fa-solid fa-crown"></i> Member</span></li>
+<li><button class="nav-cart-btn js-open-cart"><i class="fa-solid fa-basket-shopping"></i> Cart <span class="cart-count">0</span></button></li>
+<li><div class="closeMenu"><i class="fa-solid fa-xmark"></i></div></li>
+</ul>
+</nav>
+</header>
+
+<!-- Main Page Container -->
+<main class="dashboard-page-container">
+  
+  <!-- Merchant Mode Banner -->
+  <div class="merchant-mode-alert">
+    <div class="mode-left">
+      <span class="mode-tag rest"><i class="fa-solid fa-utensils"></i> RESTAURANT KITCHEN MODE</span>
+      <span>Live Kitchen Operations & Inventory Control Panel</span>
+    </div>
+    <div class="mode-right">
+      <a href="my-orders.html" class="mode-switch-btn"><i class="fa-solid fa-user"></i> Switch to Customer Mode</a>
+    </div>
+  </div>
+
+  <!-- Banner -->
+  <div class="dash-header-banner rest-banner">
+    <div>
+      <h1><i class="fa-solid fa-store"></i> Restaurant Partner Hub</h1>
+      <p>Manage real-time kitchen dispatch, monitor mandatory delivery addresses, update cooking status, and track dish stock levels.</p>
+    </div>
+    <div class="dash-actions-nav">
+      <button type="button" class="dash-nav-link js-open-auth"><i class="fa-solid fa-user-gear"></i> Staff Account</button>
+      <a href="index.html#menu" class="dash-nav-link"><i class="fa-solid fa-eye"></i> Live Menu Preview</a>
+    </div>
+  </div>
+
+  <!-- Unified Main Module Tabs Switcher -->
+  <div class="portal-main-tabs">
+    <button class="portal-tab-btn active" data-portal-tab="kitchen">
+      <i class="fa-solid fa-fire-burner"></i> Live Kitchen Queue & Dispatch
+    </button>
+    <button class="portal-tab-btn" data-portal-tab="inventory">
+      <i class="fa-solid fa-boxes-stacked"></i> Stock & Inventory Manager
+    </button>
+  </div>
+
+  <!-- SECTION 1: Kitchen Queue View -->
+  <div id="portal-tab-kitchen" class="portal-tab-content active">
+    <!-- Key Revenue & Queue Metrics -->
+    <section id="restaurant-stats-grid"></section>
+
+    <!-- Queue Filter Bar -->
+    <div class="dashboard-filter-bar">
+      <span style="font-weight:700;font-size:0.9rem;margin-right:6px;"><i class="fa-solid fa-layer-group"></i> Filter Orders:</span>
+      <button class="filter-tab-btn rest-filter-btn active" data-filter="active">🔥 Active Queue</button>
+      <button class="filter-tab-btn rest-filter-btn" data-filter="pending">⏳ New Pending Orders</button>
+      <button class="filter-tab-btn rest-filter-btn" data-filter="delivered">✅ Delivered</button>
+      <button class="filter-tab-btn rest-filter-btn" data-filter="cancelled">❌ Cancelled</button>
+    </div>
+
+    <!-- Order Queue Container -->
+    <section id="restaurant-queue-container"></section>
+  </div>
+
+  <!-- SECTION 2: Inventory & Stock View -->
+  <div id="portal-tab-inventory" class="portal-tab-content" style="display:none;">
+    <!-- Inventory Metrics -->
+    <section id="inventory-stats-grid"></section>
+
+    <!-- Inventory Table Wrap -->
+    <section class="inventory-table-wrap">
+      <div class="inventory-toolbar">
+        <h3><i class="fa-solid fa-list-check"></i> Live Items Remaining & Availability Catalog</h3>
+        <div class="search-input-box">
+          <i class="fa-solid fa-magnifying-glass"></i>
+          <input type="text" id="inv-search" placeholder="Search dish name, category, or ID...">
+        </div>
+      </div>
+      <div id="inventory-items-container"></div>
+    </section>
+
+    <!-- Add Dish Card Form -->
+    <section class="add-dish-card">
+      <h3><i class="fa-solid fa-circle-plus" style="color:var(--brand-dark);"></i> Add New Dish to Menu Inventory</h3>
+      <form id="add-dish-form">
+        <div class="form-grid">
+          <div class="input-box">
+            <label for="dish-name">Dish Name *</label>
+            <input type="text" id="dish-name" placeholder="e.g. Special Paneer Tikka" required>
+          </div>
+          <div class="input-box">
+            <label for="dish-category">Category</label>
+            <input type="text" id="dish-category" placeholder="e.g. Starter / Veg / Non-Veg" value="Special">
+          </div>
+          <div class="input-box">
+            <label for="dish-price">Price (₹) *</label>
+            <input type="number" id="dish-price" placeholder="e.g. 249" min="1" required>
+          </div>
+          <div class="input-box">
+            <label for="dish-stock">Initial Stock Quantity *</label>
+            <input type="number" id="dish-stock" placeholder="e.g. 20" min="0" required>
+          </div>
+          <div class="input-box full">
+            <label for="dish-img">Image URL (Optional)</label>
+            <input type="url" id="dish-img" placeholder="https://...">
+          </div>
+        </div>
+        <button type="submit" class="btn-primary" style="margin-top:18px;"><i class="fa-solid fa-plus"></i> Save Dish to Inventory</button>
+      </form>
+    </section>
+  </div>
+
+</main>
+
+<!-- Footer -->
+<footer>
+<div class="footer-row">
+<div class="footer-col">
+<h4 class="footer-title">company</h4>
+<ul>
+<li><a href="about.html">about us</a></li>
+<li><a href="#">privacy policy</a></li>
+</ul>
+</div>
+<div class="footer-col">
+<h4 class="footer-title">partner hub</h4>
+<ul>
+<li><a href="partner-portal.html">Live Kitchen Dispatch</a></li>
+<li><a href="partner-portal.html">Stock & Inventory Manager</a></li>
+</ul>
+</div>
+<div class="footer-col">
+<h4 class="footer-title">revenue programs</h4>
+<ul>
+<li><a href="kings-club.html">King's Club membership</a></li>
+<li><a href="catering.html">Catering & events</a></li>
+</ul>
+</div>
+<div class="footer-col">
+<h4 class="footer-title">follow us</h4>
+<div class="social-links">
+<a href="#" title="FaceBook"><i class="fab fa-facebook-f"></i></a>
+<a href="#" title="Twitter"><i class="fab fa-twitter"></i></a>
+<a href="#" title="Instagram"><i class="fab fa-instagram"></i></a>
+</div>
+</div>
+</div>
+<div class="footer-copyright">
+<h3>Copyright ©️ 2026 | <a href="index.html">King of Spices</a> | All rights reserved.</h3>
+</div>
+</footer>
+
+<!-- Cart Drawer -->
+<div class="overlay"></div>
+<div class="cart-drawer">
+<div class="cart-head"><h3>Your Cart</h3><button class="cart-close">&times;</button></div>
+<div class="cart-body"></div>
+<div class="cart-foot">
+<div class="delivery-choice">
+<label><input type="radio" name="delivery" value="standard" checked> Standard<br><small>₹40 · 35–45 min</small></label>
+<label><input type="radio" name="delivery" value="express"> Express<br><small>₹80 · 15–20 min</small></label>
+</div>
+<div class="coupon-row">
+<input type="text" class="coupon-input" placeholder="Coupon (WELCOME10 / KING50)">
+<button type="button" class="btn-ghost coupon-apply">Apply</button>
+</div>
+<div class="coupon-msg"></div>
+<div class="cart-summary">
+<div class="row-line"><span>Subtotal</span><span class="row-subtotal">₹0</span></div>
+<div class="row-line discount" style="display:none;"><span>Discount</span><span>−₹0</span></div>
+<div class="row-line"><span>Tax (5%)</span><span class="row-tax">₹0</span></div>
+<div class="row-line"><span>Delivery</span><span class="row-delivery">₹0</span></div>
+<div class="row-line total"><span>Total</span><span class="row-total">₹0</span></div>
+</div>
+<button type="button" class="btn-primary btn-block place-order" style="margin-top:14px;">Place Order</button>
+</div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About Us | King of Spices - Burgers, Pizza, Indian Veg & Non-veg Cuisine</title>
+<!-- favicon -->
+<link rel="shortcut icon" href="./favicon.svg" type="image/svg+xml">
+<!-- Font Awesome link -->
+<script src="https://kit.fontawesome.com/5289663089.js" crossorigin="anonymous"></script>
+<!-- javascript file -->
+<script src="./assets/js/script.js" defer></script>
+<!-- custom css link -->
+<link rel="stylesheet" href="./assets/css/style.css">
+</head>
+<body>
+<!-- Header Section -->
+<header class="header-main">
+<nav class="nav-main">
+<h1 class="main-title"><a href="index.html">King of Spices</a></h1>
+<div class="openMenu"><i class="fa-solid fa-bars" style="color: #ff9d2e;"></i></div>
+<ul class="nav-ul">
+<li><a href="index.html">Home</a></li>
+<li><a href="index.html#menu">Menu</a></li>
+<li><a href="my-orders.html"><i class="fa-solid fa-clock-rotate-left"></i> My Orders</a></li>
+<li><a href="partner-portal.html"><i class="fa-solid fa-store"></i> Partner Hub</a></li>
+<li><a href="about.html" class="active">About</a></li>
+<li><a href="kings-club.html">King's Club</a></li>
+<li><a href="catering.html">Catering</a></li>
+<li><a href="reservation.html">Reservation</a></li>
+<li><span class="member-pill"><i class="fa-solid fa-crown"></i> Member</span></li>
+<li><button class="nav-cart-btn js-open-cart"><i class="fa-solid fa-basket-shopping"></i> Cart <span class="cart-count">0</span></button></li>
+<li><div class="closeMenu"><i class="fa-solid fa-xmark"></i></div></li>
+</ul>
+</nav>
+</header>
+
+<!-- About Us Section -->
+<section class="abs-section">
+<h1 class="abs-title">About Us</h1>
+<div class="abs-image">
+<img src="https://alkaison.github.io/King-of-Spices/assets/images/R.png" alt="About Us">
+</div>
+<p>Welcome to <span style="color: #FF9D2E; font-weight: bold;">King of Spices</span>, a family-owned and operated restaurant serving delicious food for over 20 years. Our restaurant is located in the heart of the city and offers a cozy and comfortable atmosphere that will make you feel right at home.</p>
+<p>Our <span><a href="index.html#menu">Menu</a></span> features a variety of dishes made from fresh, locally-sourced ingredients. From classic burgers and fries to exotic seafood, we have something for everyone. We also have a full bar with a wide selection of beers, wines, and cocktails.</p>
+<p>We are dedicated to providing excellent customer service and making every visit to our restaurant a memorable one. Our friendly and knowledgeable staff is always happy to help you choose the perfect dish or drink to suit your taste.</p>
+<p>Beyond the dining room, King of Spices now also caters birthdays, weddings and corporate events, and rewards regulars through the King's Club membership.</p>
+<p>Thank you for choosing <strong>King of Spices</strong>. We look forward to serving you soon!</p>
+</section>
+
+<footer>
+<div class="footer-copyright">
+<h3>Copyright ©️ 2023 | <a href="https://github.com/Alkaison/King-of-Spices" title="King of Spices GitHub Repo">King of Spices</a> | All rights reserved.</h3>
+</div>
+</footer>
+
+<!-- Cart Drawer -->
+<div class="overlay"></div>
+<div class="cart-drawer">
+<div class="cart-head"><h3>Your Cart</h3><button class="cart-close">&times;</button></div>
+<div class="cart-body"></div>
+<div class="cart-foot">
+<div class="delivery-choice">
+<label><input type="radio" name="delivery" value="standard" checked> Standard<br><small>₹40 · 35–45 min</small></label>
+<label><input type="radio" name="delivery" value="express"> Express<br><small>₹80 · 15–20 min</small></label>
+</div>
+<div class="coupon-row">
+<input type="text" class="coupon-input" placeholder="Coupon (WELCOME10 / KING50)">
+<button type="button" class="btn-ghost coupon-apply">Apply</button>
+</div>
+<div class="coupon-msg"></div>
+<div class="cart-summary">
+<div class="row-line"><span>Subtotal</span><span class="row-subtotal">₹0</span></div>
+<div class="row-line discount" style="display:none;"><span>Discount</span><span>−₹0</span></div>
+<div class="row-line"><span>Tax (5%)</span><span class="row-tax">₹0</span></div>
+<div class="row-line"><span>Delivery</span><span class="row-delivery">₹0</span></div>
+<div class="row-line total"><span>Total</span><span class="row-total">₹0</span></div>
+</div>
+<button type="button" class="btn-primary btn-block place-order" style="margin-top:14px;">Place Order</button>
+</div>
+</div>
+
+</body>
+</html>
