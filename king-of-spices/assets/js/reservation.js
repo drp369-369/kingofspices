@@ -3,6 +3,12 @@ document.addEventListener('DOMContentLoaded', () => {
   const form = document.querySelector('form[name="reservation-form"]');
   if (!form) return;
 
+  const dateField = form.querySelector('[name="date"]');
+  if (dateField) {
+    const today = new Date();
+    dateField.min = `${today.getFullYear()}-${String(today.getMonth() + 1).padStart(2, '0')}-${String(today.getDate()).padStart(2, '0')}`;
+  }
+
   form.addEventListener('submit', (e) => {
     e.preventDefault();
     if (!form.checkValidity()) { form.reportValidity(); return; }

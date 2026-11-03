@@ -616,6 +616,11 @@ function addNewDishFromForm(form) {
   const id = name.toLowerCase().replace(/[^a-z0-9]+/g, '-');
   const inv = window.getInventory();
 
+  if (inv[id]) {
+    alert('A dish with this name already exists. Choose a different name to avoid replacing existing inventory.');
+    return;
+  }
+
   inv[id] = {
     name,
     category: category || 'General',

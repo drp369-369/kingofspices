@@ -7,6 +7,11 @@ document.addEventListener('DOMContentLoaded', () => {
   const estAmt = document.querySelector('.estimate-box .amt');
   const estNote = document.querySelector('.estimate-box .note');
   const form = document.getElementById('catering-form');
+  const eventDate = document.getElementById('cat-date');
+  if (eventDate) {
+    const today = new Date();
+    eventDate.min = `${today.getFullYear()}-${String(today.getMonth() + 1).padStart(2, '0')}-${String(today.getDate()).padStart(2, '0')}`;
+  }
 
   function selectPackage(key) {
     packageInput.value = key;

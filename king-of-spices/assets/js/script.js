@@ -183,34 +183,41 @@ function showAuthModal() {
   const auth = getAuth();
 
   modal.innerHTML = `
-    <div class="modal-card auth-modal-card">
-      <button class="modal-close-x" onclick="document.querySelector('.auth-modal').classList.remove('show')">&times;</button>
-      <div class="auth-tabs">
-        <button class="auth-tab-btn active" data-authtab="customer"><i class="fa-solid fa-user"></i> Customer Login / Signup</button>
-        <button class="auth-tab-btn" data-authtab="restaurant"><i class="fa-solid fa-store"></i> Restaurant Staff Portal</button>
+    <div class="modal-card auth-modal-card" role="dialog" aria-modal="true" aria-labelledby="auth-dialog-title">
+      <button class="modal-close-x" type="button" aria-label="Close sign in" onclick="document.querySelector('.auth-modal').classList.remove('show')">&times;</button>
+      <div class="auth-brand-mark"><span class="auth-brand-icon"><i class="fa-solid fa-pepper-hot"></i></span><span>KING OF SPICES <small>YOUR TABLE, YOUR WAY</small></span></div>
+      <div class="auth-heading">
+        <span class="eyebrow">Welcome</span>
+        <h2 id="auth-dialog-title">Sign in to continue</h2>
+        <p>Choose how you want to access the experience.</p>
+      </div>
+      <div class="auth-tabs" role="tablist" aria-label="Choose sign in type">
+        <button class="auth-tab-btn active" type="button" role="tab" aria-selected="true" data-authtab="customer"><i class="fa-solid fa-user"></i> Customer</button>
+        <button class="auth-tab-btn" type="button" role="tab" aria-selected="false" data-authtab="restaurant"><i class="fa-solid fa-store"></i> Restaurant staff</button>
       </div>
 
       <!-- Customer Form -->
       <form id="auth-form-customer" class="auth-form-content active">
-        <h3><i class="fa-solid fa-utensils" style="color:var(--brand-dark);"></i> Customer Login</h3>
-        <p class="auth-subtitle">Log in to save delivery addresses and track active food orders.</p>
+        <h3>Customer account</h3>
+        <p class="auth-subtitle">Save your delivery details and find your orders in one place.</p>
         <div class="form-group">
-          <label>Full Name *</label>
-          <input type="text" id="ac-name" placeholder="e.g. Rahul Sharma" value="${auth.name || ''}" required>
+          <label for="ac-name">Full name <span>*</span></label>
+          <input type="text" id="ac-name" placeholder="e.g. Rahul Sharma" required>
         </div>
         <div class="form-group">
-          <label>Email Address</label>
-          <input type="email" id="ac-email" placeholder="e.g. rahul@example.com" value="${auth.email || ''}">
+          <label for="ac-email">Email address</label>
+          <input type="email" id="ac-email" placeholder="e.g. rahul@example.com">
         </div>
         <div class="form-group">
-          <label>Phone Number (Mandatory for orders) *</label>
-          <input type="tel" id="ac-phone" placeholder="10-digit mobile number" value="${auth.phone || store.get('kos_user_phone','')}" required>
+          <label for="ac-phone">Mobile number <span>*</span></label>
+          <input type="tel" id="ac-phone" placeholder="10-digit mobile number" inputmode="numeric" pattern="[0-9]{10}" maxlength="10" required>
         </div>
         <div class="form-group">
-          <label>Default Delivery Address *</label>
-          <textarea id="ac-address" rows="2" placeholder="Complete street address, door/flat no." required>${auth.address || store.get('kos_user_address','')}</textarea>
+          <label for="ac-address">Default delivery address <span>*</span></label>
+          <textarea id="ac-address" rows="2" placeholder="Complete street address, door/flat no." required></textarea>
         </div>
-        <button type="submit" class="btn-primary btn-block" style="margin-top:12px;">Login as Customer</button>
+        <button type="submit" class="btn-primary btn-block auth-submit"><span>Continue as customer</span><i class="fa-solid fa-arrow-right"></i></button>
+        <p class="auth-footnote"><i class="fa-solid fa-lock"></i> Demo sign-in stores details in this browser only.</p>
       </form>
 
       <!-- Restaurant Staff Form -->
@@ -218,28 +225,36 @@ function showAuthModal() {
         <div class="staff-alert-banner">
           <i class="fa-solid fa-shield-halved"></i> Restricted Merchant & Kitchen Access
         </div>
-        <h3><i class="fa-solid fa-store" style="color:var(--brand-dark);"></i> Restaurant Staff Login</h3>
-        <p class="auth-subtitle">Access the live kitchen order queue, update dispatch status, and manage dish inventory.</p>
+        <h3>Restaurant staff</h3>
+        <p class="auth-subtitle">Open the kitchen queue and manage the demo inventory.</p>
         <div class="form-group">
-          <label>Staff / Kitchen ID *</label>
+          <label for="ar-staffid">Staff / kitchen ID <span>*</span></label>
           <input type="text" id="ar-staffid" placeholder="e.g. CHEF-01 or ADMIN" value="KITCHEN-ADMIN" required>
         </div>
         <div class="form-group">
-          <label>Staff Passcode / PIN *</label>
+          <label for="ar-pin">Staff passcode / PIN <span>*</span></label>
           <input type="password" id="ar-pin" placeholder="Enter staff PIN (Demo: 1234)" value="1234" required>
         </div>
-        <button type="submit" class="btn-primary btn-block" style="margin-top:12px;">Login as Kitchen Staff</button>
-        <p style="font-size:0.78rem;color:var(--muted);margin-top:10px;text-align:center;">Demo Passcode: <strong>1234</strong> or click button above.</p>
+        <button type="submit" class="btn-primary btn-block auth-submit"><span>Continue to partner hub</span><i class="fa-solid fa-arrow-right"></i></button>
+        <p class="auth-footnote"><i class="fa-solid fa-circle-info"></i> Demo access only. This is not secure staff authentication.</p>
       </form>
     </div>
   `;
+
+  // Populate user data as form values, never as HTML markup.
+  modal.querySelector('#ac-name').value = auth.name || '';
+  modal.querySelector('#ac-email').value = auth.email || '';
+  modal.querySelector('#ac-phone').value = auth.phone || store.get('kos_user_phone', '');
+  modal.querySelector('#ac-address').value = auth.address || store.get('kos_user_address', '');
 
   // Tab switcher
   const tabs = modal.querySelectorAll('.auth-tab-btn');
   tabs.forEach(t => {
     t.addEventListener('click', () => {
       tabs.forEach(x => x.classList.remove('active'));
+      tabs.forEach(x => x.setAttribute('aria-selected', 'false'));
       t.classList.add('active');
+      t.setAttribute('aria-selected', 'true');
       const target = t.dataset.authtab;
       modal.querySelectorAll('.auth-form-content').forEach(f => {
         if (f.id === 'auth-form-' + target) {
@@ -282,6 +297,7 @@ function showAuthModal() {
   });
 
   modal.classList.add('show');
+  modal.querySelector('#ac-name').focus();
 }
 
 /* ---------------- Menu Item Actions & Stock Badges ---------------- */
@@ -616,7 +632,7 @@ function placeOrder() {
     if (errAddress) errAddress.classList.remove('show');
   }
 
-  if (!phone || phone.length < 7) {
+  if (!/^\d{10}$/.test(phone)) {
     if (phoneEl) phoneEl.classList.add('input-error');
     if (errPhone) errPhone.classList.add('show');
     isValid = false;
@@ -628,7 +644,7 @@ function placeOrder() {
   if (!isValid) {
     toast('Please fill out the required delivery address and phone number.');
     if (addressEl && !address) addressEl.focus();
-    else if (phoneEl && !phone) phoneEl.focus();
+    else if (phoneEl && !/^\d{10}$/.test(phone)) phoneEl.focus();
     return;
   }
 
