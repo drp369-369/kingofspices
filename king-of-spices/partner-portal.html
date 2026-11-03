@@ -60,10 +60,10 @@
 
   <!-- Unified Main Module Tabs Switcher -->
   <div class="portal-main-tabs">
-    <button class="portal-tab-btn active" data-portal-tab="kitchen">
+    <button type="button" class="portal-tab-btn active" data-portal-tab="kitchen" aria-selected="true" onclick="window.switchPortalTab('kitchen')">
       <i class="fa-solid fa-fire-burner"></i> Live Kitchen Queue & Dispatch
     </button>
-    <button class="portal-tab-btn" data-portal-tab="inventory">
+    <button type="button" class="portal-tab-btn" data-portal-tab="inventory" aria-selected="false" onclick="window.switchPortalTab('inventory')">
       <i class="fa-solid fa-boxes-stacked"></i> Stock & Inventory Manager
     </button>
   </div>

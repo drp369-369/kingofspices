@@ -8,16 +8,16 @@ The existing product is a multi-page browser prototype for a restaurant direct-r
 
 - Static menu and cart with quantity controls, stock limits, coupon and delivery selections, and estimated 5% tax.
 - Order creation in browser storage, local stock deduction and a customer order history view.
-- Partner hub with kitchen queue/status controls and inventory adjustment/addition UI.
+- Partner hub with kitchen queue/status controls, working kitchen/inventory tab switching, and inventory adjustment/addition UI.
 - King's Club join/cancel state and a member discount in the cart.
 - Catering package estimate and locally saved inquiry reference.
 - Reservation form validation and locally saved reservation reference.
-- Current audit improvements: ten-digit checkout phone validation; no past reservation/catering dates; duplicate inventory names cannot overwrite an existing normalized ID.
+- Current improvements: ten-digit checkout/customer sign-in phone validation; no past reservation/catering dates; duplicate inventory IDs or displayed names are blocked with a nonblocking message.
 - Refreshed login modal with responsive styling, clearer customer/staff selection, accessible tab state, ten-digit customer phone validation, and safer population of saved form values.
 
 ## In progress / not yet evidenced
 
-No active work log or named owner data exists. The next work is proposed, not underway: customer interviews, pricing/rule confirmation, regression verification, and a decision on whether a back end is in CIE-3 scope.
+Historical task ownership is not established beyond the Git metadata in TEAM_ALLOCATION.md. Synthetic browser regression now covers core ordering, membership, catering, reservation and inventory paths; some edge cases remain pending. Customer interviews and sponsor confirmation of business rules remain uncollected.
 
 ## Not implemented
 

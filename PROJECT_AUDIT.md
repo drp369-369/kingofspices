@@ -40,7 +40,7 @@ The repository is an existing static HTML/CSS/JavaScript prototype extending the
 1. **Evidence:** no interviews, survey results, observation notes or credible customer research are included. Testimonials in the website are not research evidence and must not be represented as such.
 2. **Security/data:** demo role selection and staff PIN are client-side; local storage is editable and not private. Do not put real customer, payment or staff data in this prototype.
 3. **Reliability:** there is no backend validation, atomic stock/order update, recovery, backup, audit trail or multi-device synchronization.
-4. **Product accuracy:** README and in-page content have inconsistent catering prices; some documentation describes automatic order progression and a separate customer profile not substantiated by the code. Confirm actual price rules and revise public-facing claims.
+4. **Product accuracy:** an earlier supplied guide disagreed with the in-page catering prices. The current canonical README avoids quoting package rates; confirm the displayed prices, tax and fees with the project sponsor before treating them as business rules. Order status is changed manually; no automatic progression exists.
 5. **External dependency:** artwork/icons rely on third-party URLs/CDNs and may fail offline. No image assets or diagrams are bundled beyond the favicon.
 6. **Usability/accessibility:** validate keyboard, mobile, screen-reader, contrast and form error behavior. External fonts/icons can affect rendering.
 7. **Engineering:** no automated regression, linting or build pipeline exists. Dynamic HTML includes values from local state; harden output escaping before any real user data or backend integration.

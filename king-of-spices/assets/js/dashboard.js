@@ -16,23 +16,23 @@ function initPartnerPortal() {
 
   const tabBtns = document.querySelectorAll('.portal-tab-btn');
   tabBtns.forEach(btn => {
-    btn.addEventListener('click', () => {
-      tabBtns.forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-
-      const targetTab = btn.dataset.portalTab;
-      document.querySelectorAll('.portal-tab-content').forEach(content => {
-        if (content.id === 'portal-tab-' + targetTab) {
-          content.style.display = 'block';
-          content.classList.add('active');
-        } else {
-          content.style.display = 'none';
-          content.classList.remove('active');
-        }
-      });
-    });
+    btn.addEventListener('click', () => window.switchPortalTab(btn.dataset.portalTab));
   });
 }
+
+window.switchPortalTab = function(targetTab) {
+  document.querySelectorAll('.portal-tab-btn').forEach(btn => {
+    const selected = btn.dataset.portalTab === targetTab;
+    btn.classList.toggle('active', selected);
+    btn.setAttribute('aria-selected', String(selected));
+  });
+
+  document.querySelectorAll('.portal-tab-content').forEach(content => {
+    const selected = content.id === 'portal-tab-' + targetTab;
+    content.style.display = selected ? 'block' : 'none';
+    content.classList.toggle('active', selected);
+  });
+};
 
 /* ---------------- Helper Utilities ---------------- */
 function formatDate(isoStr) {
@@ -613,11 +613,15 @@ function addNewDishFromForm(form) {
     return;
   }
 
-  const id = name.toLowerCase().replace(/[^a-z0-9]+/g, '-');
+  const id = name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
   const inv = window.getInventory();
 
-  if (inv[id]) {
-    alert('A dish with this name already exists. Choose a different name to avoid replacing existing inventory.');
+  const duplicateName = Object.values(inv).some(item =>
+    (item.name || '').trim().toLowerCase() === name.toLowerCase()
+  );
+  if (!id || inv[id] || duplicateName) {
+    if (window.toast) window.toast('A dish with this name already exists. Choose a different name.');
+    else alert('A dish with this name already exists. Choose a different name.');
     return;
   }
 
